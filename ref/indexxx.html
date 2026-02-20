@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Akmal Salim Malik | Portfolio</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.5s ease-out',
+                        'slide-in-left': 'slideInLeft 0.5s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'grid-pattern': 'linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom CSS for glassmorphism and animations */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-nav.scrolled {
+            background: rgba(255, 255, 255, 0.15);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            backdrop-filter: blur(25px) saturate(200%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* Enhanced Particle background */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            animation: float 15s infinite linear;
+            pointer-events: auto;
+            transition: transform 0.5s ease-out;
+            will-change: transform;
+        }
+
+        /* Particle interactions */
+        @media (min-width: 1100px) {
+            .particle:hover {
+                transform: translate(var(--dx, 0), var(--dy, 0)) scale(1.3);
+                background: rgba(255, 255, 255, 0.8);
+                transition: transform 0.3s ease-out, background 0.3s ease;
+            }
+        }
+
+        @media (min-width: 700px) and (max-width: 1100px) {
+            .particle.touched {
+                transform: translate(var(--dx, 0), var(--dy, 0)) scale(1.3);
+                background: rgba(255, 255, 255, 0.8);
+                transition: transform 0.3s ease-out, background 0.3s ease;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        /* Loading placeholder animation */
+        .lazy-placeholder {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Skill bar animation */
+        .skill-bar {
+            transition: width 1.5s ease-in-out;
+        }
+
+        .skill-width-95 {
+            width: 95%;
+        }
+
+        .skill-width-90 {
+            width: 90%;
+        }
+
+        .skill-width-92 {
+            width: 92%;
+        }
+
+        /* Hover effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Lazy loading classes */
+        .lazy-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .lazy-section.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lazy-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .lazy-element.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lazy-stagger:nth-child(1) { transition-delay: 0.05s; }
+        .lazy-stagger:nth-child(2) { transition-delay: 0.1s; }
+        .lazy-stagger:nth-child(3) { transition-delay: 0.15s; }
+        .lazy-stagger:nth-child(4) { transition-delay: 0.2s; }
+        .lazy-stagger:nth-child(5) { transition-delay: 0.25s; }
+        .lazy-stagger:nth-child(6) { transition-delay: 0.3s; }
+
+        /* Timeline item animations */
+        .timeline-item-1 {
+            animation-delay: 0.05s;
+        }
+
+        .timeline-item-2 {
+            animation-delay: 0.15s;
+        }
+
+        .timeline-item-3 {
+            animation-delay: 0.25s;
+        }
+
+        /* Responsive timeline */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 30px;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+
+        /* Certifications Slider Styles */
+        .certifications-slider {
+            position: relative;
+            overflow: hidden;
+            padding: 0 60px;
+        }
+
+        .certifications-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 30px;
+            padding: 10px 0;
+        }
+
+        .certification-slide {
+            flex: 0 0 calc(33.333% - 20px);
+            min-width: 0;
+        }
+
+        @media (max-width: 1000px) {
+            .certifications-slider {
+                padding: 0 40px;
+            }
+            
+            .certification-slide {
+                flex: 0 0 calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .certifications-slider {
+                padding: 0 30px;
+            }
+            
+            .certification-slide {
+                flex: 0 0 calc(100% - 20px);
+            }
+            
+            .certifications-track {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .certifications-slider {
+                padding: 0 20px;
+            }
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .slider-arrow:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .slider-arrow.left {
+            left: 0;
+        }
+
+        .slider-arrow.right {
+            right: 0;
+        }
+
+        .slider-arrow i {
+            color: #3b82f6;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .slider-arrow i {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Compact styling for mobile */
+        @media (max-width: 640px) {
+            .certification-card {
+                padding: 1.5rem !important;
+            }
+            
+            .certification-icon {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            .certification-icon i {
+                font-size: 1.75rem !important;
+            }
+            
+            .certification-title {
+                font-size: 1.125rem !important;
+            }
+            
+            .certification-provider {
+                font-size: 0.875rem !important;
+            }
+            
+            .view-certificate-btn {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .certification-card {
+                padding: 1.25rem !important;
+            }
+            
+            .certification-icon {
+                width: 50px !important;
+                height: 50px !important;
+            }
+            
+            .certification-icon i {
+                font-size: 1.5rem !important;
+            }
+            
+            .certification-title {
+                font-size: 1rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-secondary-50 to-white text-secondary-800 font-inter">
+    
+    <!-- Navigation -->
+    <header id="header" class="glass-nav fixed w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold flex items-center space-x-2 text-black" title="Akmal Malik - Home">
+                    <i class="fas fa-code text-primary-600"></i>
+                    <span>Akmal Malik</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="#hero" class="text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full" title="Go to Home section">Home</a></li>
+                    <li><a href="#about" class="text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full" title="Go to About section">About</a></li>
+                    <li><a href="#skills" class="text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full" title="Go to Skills section">Skills</a></li>
+                    <li><a href="#projects" class="text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full" title="Go to Projects section">Projects</a></li>
+                    <li><a href="#education" class="text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full" title="Go to Education section">Education</a></li>
+                    <li><a href="#certifications" class="text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full" title="Go to Certifications section">Certificates</a></li>
+                    <li><a href="#contact" class="text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full" title="Go to Contact section">Contact</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-2xl text-secondary-800" title="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden mt-4 hidden glass-card rounded-xl p-6 animate-slide-up">
+                <ul class="space-y-4">
+                    <li><a href="#hero" class="block py-2 text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300" title="Go to Home section">Home</a></li>
+                    <li><a href="#about" class="block py-2 text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300" title="Go to About section">About</a></li>
+                    <li><a href="#skills" class="block py-2 text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300" title="Go to Skills section">Skills</a></li>
+                    <li><a href="#projects" class="block py-2 text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300" title="Go to Projects section">Projects</a></li>
+                    <li><a href="#education" class="block py-2 text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300" title="Go to Education section">Education</a></li>
+                    <li><a href="#certifications" class="block py-2 text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300" title="Go to Certifications section">Certificates</a></li>
+                    <li><a href="#contact" class="block py-2 text-secondary-800 hover:text-primary-600 font-medium transition-colors duration-300" title="Go to Contact section">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 pt-20">
+        <!-- Animated Background -->
+        <div id="hero-particles-container" class="particles-container"></div>
+        <div class="absolute inset-0 bg-grid-pattern bg-[size:50px_50px] opacity-10"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- Profile Image -->
+                <div class="relative w-48 h-48 mx-auto mb-8">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-purple-400 rounded-full blur-xl opacity-70 animate-pulse-slow"></div>
+                    <img 
+                        src="PHOTO-2026-01-31-19-03-44.jpg" 
+                        alt="Mohammad Akmal Salim Malik"
+                        data-src="PHOTO-2026-01-31-19-03-44.jpg"
+                        class="lazy-placeholder w-full h-full rounded-full object-cover border-4 border-white/30 shadow-2xl relative animate-float"
+                        loading="lazy"
+                        title="Mohammad Akmal Salim Malik - Profile Photo"
+                    >
+                </div>
+                
+                <!-- Content -->
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white font-jakarta">
+                    <span class="block">Mohammad</span>
+                    <span class="block gradient-text bg-gradient-to-r from-white to-primary-200">Akmal Salim Malik</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-white/90 mb-8 font-light max-w-2xl mx-auto">
+                    Aspiring <span class="font-semibold">Web Developer</span> & <span class="font-semibold">Data Analyst</span>
+                </p>
+                
+                <!-- Social Links -->
+                <div class="flex justify-center space-x-6 mb-10">
+                    <a href="https://linkedin.com/in/akmalmalik" target="_blank" rel="noopener noreferrer" 
+                       class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-xl transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+                       title="Visit my LinkedIn profile (opens in new tab)">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/akmal-malik" target="_blank" rel="noopener noreferrer"
+                       class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-xl transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+                       title="Visit my GitHub profile (opens in new tab)">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/mature_intention" target="_blank" rel="noopener noreferrer"
+                       class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-xl transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+                       title="Visit my Instagram profile (opens in new tab)">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                
+                <!-- CTA Button -->
+                <a href="#contact" 
+                   class="inline-block px-8 py-4 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl backdrop-blur-sm border border-white/30 hover:border-white/50"
+                   title="Contact me for collaborations and opportunities">
+                   Get In Touch <i class="ml-2 fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-white/80 hover:text-white" title="Scroll down to learn more about me">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="lazy-section py-20 bg-gradient-to-b from-white to-secondary-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 relative">
+                <span class="gradient-text">About Me</span>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- About Text -->
+                <div class="space-y-6">
+                    <div class="glass-card rounded-2xl p-8 hover-lift lazy-element">
+                        <p class="text-secondary-700 mb-4 leading-relaxed">
+                            A dedicated and enthusiastic Bachelor of Computer Applications student from 
+                            <span class="font-semibold text-primary-600">Lovely Professional University</span> with a strong foundation in programming, database management, and web development.
+                        </p>
+                        <p class="text-secondary-700 leading-relaxed">
+                            I am passionate about building creative solutions to complex problems and have hands-on experience in leading team projects and developing full-fledged applications from scratch.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-8 hover-lift lazy-element">
+                        <p class="text-secondary-700 leading-relaxed">
+                            My goal is to leverage my skills in both front-end development and data analysis to create intuitive, data-driven user experiences. 
+                            I am a quick learner with strong adaptability and problem-solving abilities, eager to contribute to innovative projects.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Languages & Info -->
+                <div class="space-y-8">
+                    <div class="glass-card rounded-2xl p-8 hover-lift lazy-element">
+                        <h3 class="text-2xl font-bold mb-6 flex items-center text-primary-700">
+                            <i class="fas fa-language mr-3"></i>
+                            Spoken Languages
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gradient-to-r from-primary-50 to-white p-4 rounded-xl border border-primary-100 text-center transition-all duration-300 hover:scale-105 lazy-stagger">
+                                <span class="font-semibold text-primary-700">English</span>
+                            </div>
+                            <div class="bg-gradient-to-r from-primary-50 to-white p-4 rounded-xl border border-primary-100 text-center transition-all duration-300 hover:scale-105 lazy-stagger">
+                                <span class="font-semibold text-primary-700">Hindi</span>
+                            </div>
+                            <div class="bg-gradient-to-r from-primary-50 to-white p-4 rounded-xl border border-primary-100 text-center transition-all duration-300 hover:scale-105 lazy-stagger">
+                                <span class="font-semibold text-primary-700">Bengali</span>
+                            </div>
+                            <div class="bg-gradient-to-r from-primary-50 to-white p-4 rounded-xl border border-primary-100 text-center transition-all duration-300 hover:scale-105 lazy-stagger">
+                                <span class="font-semibold text-primary-700">Marathi</span>
+                            </div>
+                            <div class="bg-gradient-to-r from-primary-50 to-white p-4 rounded-xl border border-primary-100 text-center transition-all duration-300 hover:scale-105 col-span-2 lazy-stagger">
+                                <span class="font-semibold text-primary-700">Konkani</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-8 hover-lift lazy-element">
+                        <h3 class="text-2xl font-bold mb-6 flex items-center text-primary-700">
+                            <i class="fas fa-bullseye mr-3"></i>
+                            Career Goals
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-secondary-700">Full-stack Web Developer role</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-secondary-700">Master modern frameworks (React, Vue, Angular)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-secondary-700">Contribute to open-source projects</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="lazy-section py-20 bg-gradient-to-b from-secondary-50 to-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 relative">
+                <span class="gradient-text">Technical Skills</span>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Skill Categories with staggered lazy loading -->
+                <div class="glass-card rounded-2xl p-8 hover-lift lazy-element lazy-stagger">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mr-4">
+                            <i class="fas fa-palette text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-800">Frontend</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">HTML5/CSS3</span>
+                                <span class="font-bold text-primary-600">95%</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-2.5">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full skill-width-95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">JavaScript</span>
+                                <span class="font-bold text-primary-600">90%</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-2.5">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full skill-width-90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Tailwind CSS</span>
+                                <span class="font-bold text-primary-600">92%</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-2.5">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full skill-width-92"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 hover-lift lazy-element lazy-stagger">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center mr-4">
+                            <i class="fas fa-database text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-800">Databases</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-chevron-right text-primary-500 mr-3"></i>
+                            <span>PostgreSQL & MySQL</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-chevron-right text-primary-500 mr-3"></i>
+                            <span>MongoDB (NoSQL)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-chevron-right text-primary-500 mr-3"></i>
+                            <span>Database Design & Normalization</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-chevron-right text-primary-500 mr-3"></i>
+                            <span>Complex SQL Queries & Joins</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 hover-lift lazy-element lazy-stagger">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center mr-4">
+                            <i class="fas fa-server text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-800">Backend</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-chevron-right text-primary-500 mr-3"></i>
+                            <span>Node.js & Express.js</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-chevron-right text-primary-500 mr-3"></i>
+                            <span>RESTful API Design</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-chevron-right text-primary-500 mr-3"></i>
+                            <span>EJS Template Engine</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-chevron-right text-primary-500 mr-3"></i>
+                            <span>Middleware & Authentication</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 hover-lift lazy-element lazy-stagger">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center mr-4">
+                            <i class="fas fa-code text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-800">Languages</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <span class="bg-gradient-to-r from-orange-50 to-white border border-orange-100 rounded-lg py-2 px-4 text-center font-medium">C/C++</span>
+                        <span class="bg-gradient-to-r from-orange-50 to-white border border-orange-100 rounded-lg py-2 px-4 text-center font-medium">Python</span>
+                        <span class="bg-gradient-to-r from-orange-50 to-white border border-orange-100 rounded-lg py-2 px-4 text-center font-medium">Java</span>
+                        <span class="bg-gradient-to-r from-orange-50 to-white border border-orange-100 rounded-lg py-2 px-4 text-center font-medium">JavaScript</span>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 hover-lift lazy-element lazy-stagger">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mr-4">
+                            <i class="fas fa-tools text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-800">Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-gradient-to-r from-purple-50 to-white border border-purple-100 rounded-lg py-2 px-4 font-medium">Git & GitHub</span>
+                        <span class="bg-gradient-to-r from-purple-50 to-white border border-purple-100 rounded-lg py-2 px-4 font-medium">VS Code</span>
+                        <span class="bg-gradient-to-r from-purple-50 to-white border border-purple-100 rounded-lg py-2 px-4 font-medium">Figma</span>
+                        <span class="bg-gradient-to-r from-purple-50 to-white border border-purple-100 rounded-lg py-2 px-4 font-medium">Canva</span>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 hover-lift lazy-element lazy-stagger">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-800">Soft Skills</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <span class="bg-gradient-to-r from-cyan-50 to-white border border-cyan-100 rounded-lg py-2 px-4 text-center font-medium">Leadership</span>
+                        <span class="bg-gradient-to-r from-cyan-50 to-white border border-cyan-100 rounded-lg py-2 px-4 text-center font-medium">Problem Solving</span>
+                        <span class="bg-gradient-to-r from-cyan-50 to-white border border-cyan-100 rounded-lg py-2 px-4 text-center font-medium">Adaptability</span>
+                        <span class="bg-gradient-to-r from-cyan-50 to-white border border-cyan-100 rounded-lg py-2 px-4 text-center font-medium">Project Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="lazy-section py-20 bg-gradient-to-b from-white to-secondary-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 relative">
+                <span class="gradient-text">Featured Projects</span>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
+            </h2>
+            
+            <div class="max-w-6xl mx-auto space-y-12">
+                <!-- Project 1 -->
+                <div class="glass-card rounded-3xl overflow-hidden hover-lift lazy-element">
+                    <div class="md:flex">
+                        <div class="md:w-2/3 p-8 md:p-10">
+                            <div class="flex items-center justify-between mb-4">
+                                <a href="https://www.giveyu.online" target="_blank" rel="noopener noreferrer" class="text-2xl md:text-3xl font-bold text-primary-700 hover:text-primary-800 transition-colors duration-300"
+                                   title="Visit Giveyu.Online project (opens in new tab)">
+                                    Giveyu.Online
+                                    <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                                </a>
+                                <span class="text-sm font-semibold bg-gradient-to-r from-blue-100 to-purple-100 text-primary-700 px-3 py-1 rounded-full">
+                                    Ongoing
+                                </span>
+                            </div>
+                            <p class="text-secondary-600 mb-6 text-lg">A Virtual Gift Sending Platform</p>
+                            <p class="text-secondary-700 mb-6">
+                                An innovative, fully frontend-based gifting platform designed for long-distance relationships and friendships.
+                            </p>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span>Developed interactive games and activities that run entirely in the user's browser</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span>Ensured smooth, responsive design with modern frontend technologies</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span>Focused on creativity, accessibility, and seamless user experience</span>
+                                </li>
+                            </ul>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">HTML5</span>
+                                <span class="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">Tailwind CSS</span>
+                                <span class="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-4 py-2 rounded-full text-sm font-semibold">Vanilla JavaScript</span>
+                            </div>
+                        </div>
+                        <div class="md:w-1/3 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center p-8">
+                            <i class="fas fa-gift text-white text-6xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+<div class="glass-card rounded-3xl overflow-hidden hover-lift lazy-element">
+    <div class="md:flex flex-row-reverse">
+        <div class="md:w-2/3 p-8 md:p-10">
+            
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-2xl md:text-3xl font-bold text-primary-700">
+                    Personal Portfolio Website
+                </h3>
+                <span class="text-sm font-semibold bg-gradient-to-r from-green-100 to-teal-100 text-green-700 px-3 py-1 rounded-full">
+                    Completed
+                </span>
+            </div>
+
+            <p class="text-secondary-600 mb-6 text-lg">
+                A fully responsive and animated personal portfolio built with modern frontend technologies.
+            </p>
+
+            <p class="text-secondary-700 mb-6">
+                Designed and developed to showcase my skills, projects, certifications, and education in a visually engaging way. 
+                The website focuses on smooth animations, interactive UI elements, performance optimization, and modern glassmorphism design.
+            </p>
+
+            <ul class="space-y-3 mb-8">
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                    <span>Built fully responsive layout using Tailwind CSS</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                    <span>Implemented custom particle animation and interactive effects using JavaScript</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                    <span>Integrated lazy loading, smooth scrolling, and performance optimizations</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                    <span>Designed glassmorphism UI with gradient animations and modern UX principles</span>
+                </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-3">
+                <span class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">HTML5</span>
+                <span class="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">Tailwind CSS</span>
+                <span class="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-4 py-2 rounded-full text-sm font-semibold">JavaScript</span>
+                <span class="bg-gradient-to-r from-gray-700 to-gray-800 text-white px-4 py-2 rounded-full text-sm font-semibold">Responsive Design</span>
+            </div>
+
+        </div>
+
+        <div class="md:w-1/3 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center p-8">
+            <i class="fas fa-user text-white text-6xl opacity-80"></i>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="lazy-section py-20 bg-gradient-to-b from-secondary-50 to-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 relative">
+                <span class="gradient-text">Education Timeline</span>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
+            </h2>
+            
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Timeline Line -->
+                <div class="timeline-line"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12 relative">
+                    <!-- LPU -->
+                    <div class="timeline-item lazy-element timeline-item-1">
+                        <div class="timeline-dot"></div>
+                        <div class="ml-0 md:ml-12 lg:ml-24">
+                            <div class="glass-card rounded-2xl p-8 hover-lift">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <h3 class="text-2xl font-bold text-primary-700">Lovely Professional University</h3>
+                                    <span class="text-sm font-semibold bg-gradient-to-r from-blue-100 to-purple-100 text-primary-700 px-3 py-1 rounded-full mt-2 md:mt-0">
+                                        2024 - Present
+                                    </span>
+                                </div>
+                                <h4 class="text-xl font-semibold text-secondary-700 mb-3">Bachelor of Computer Application (BCA)</h4>
+                                <div class="flex items-center space-x-6 text-secondary-600">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-graduation-cap text-primary-500 mr-2"></i>
+                                        <span>CGPA: 8.45</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-map-marker-alt text-primary-500 mr-2"></i>
+                                        <span>Punjab, India</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Higher Secondary -->
+                    <div class="timeline-item lazy-element timeline-item-2">
+                        <div class="timeline-dot"></div>
+                        <div class="ml-0 md:ml-12 lg:ml-24">
+                            <div class="glass-card rounded-2xl p-8 hover-lift">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <h3 class="text-2xl font-bold text-primary-700">Shri Shantadurga Higher Secondary School</h3>
+                                    <span class="text-sm font-semibold bg-gradient-to-r from-blue-100 to-purple-100 text-primary-700 px-3 py-1 rounded-full mt-2 md:mt-0">
+                                        2022 - 2024
+                                    </span>
+                                </div>
+                                <h4 class="text-xl font-semibold text-secondary-700 mb-3">Intermediate (Science Stream)</h4>
+                                <div class="flex items-center space-x-6 text-secondary-600">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-percentage text-primary-500 mr-2"></i>
+                                        <span>Percentage: 86%</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-map-marker-alt text-primary-500 mr-2"></i>
+                                        <span>Bicholim, Goa</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- High School -->
+                    <div class="timeline-item lazy-element timeline-item-3">
+                        <div class="timeline-dot"></div>
+                        <div class="ml-0 md:ml-12 lg:ml-24">
+                            <div class="glass-card rounded-2xl p-8 hover-lift">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <h3 class="text-2xl font-bold text-primary-700">Shri Shantadurga High School</h3>
+                                    <span class="text-sm font-semibold bg-gradient-to-r from-blue-100 to-purple-100 text-primary-700 px-3 py-1 rounded-full mt-2 md:mt-0">
+                                        2017 - 2022
+                                    </span>
+                                </div>
+                                <h4 class="text-xl font-semibold text-secondary-700 mb-3">Matriculation</h4>
+                                <div class="flex items-center space-x-6 text-secondary-600">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-percentage text-primary-500 mr-2"></i>
+                                        <span>Percentage: 75%</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-map-marker-alt text-primary-500 mr-2"></i>
+                                        <span>Bicholim, Goa</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="lazy-section py-20 bg-gradient-to-b from-white to-secondary-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 relative">
+                <span class="gradient-text">Certifications</span>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
+            </h2>
+            
+            <div class="max-w-6xl mx-auto">
+                <!-- Certifications Slider -->
+                <div class="certifications-slider relative">
+                    <!-- Left Arrow -->
+                    <div class="slider-arrow left" id="cert-slider-prev" title="Previous certificate">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    
+                    <!-- Right Arrow -->
+                    <div class="slider-arrow right" id="cert-slider-next" title="Next certificate">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    
+                    <!-- Slider Track -->
+                    <div class="certifications-track" id="certifications-track">
+                        <!-- AWS Certification -->
+                        <div class="certification-slide">
+                            <div class="glass-card rounded-2xl p-8 text-center hover-lift certification-card">
+                                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center certification-icon">
+                                    <i class="fab fa-aws text-white text-3xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary-700 mb-3 certification-title">
+                                    AWS Certified Developer – Associate
+                                </h3>
+                                <p class="text-secondary-600 mb-4 certification-provider">
+                                    Infosys Springboard
+                                </p>
+                                <a href="PHOTO-2026-02-07-10-35-06.jpg"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="inline-block px-6 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 
+                                          text-white font-semibold rounded-full transition-all duration-300 
+                                          hover:scale-105 hover:shadow-lg view-certificate-btn"
+                                   title="View AWS Certified Developer – Associate Certificate">
+                                   View Certificate
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- React Certification -->
+                        <div class="certification-slide">
+                            <div class="glass-card rounded-2xl p-8 text-center hover-lift certification-card">
+                                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center certification-icon">
+                                    <i class="fab fa-react text-white text-3xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary-700 mb-3 certification-title">React Development</h3>
+                                <p class="text-secondary-600 mb-4 certification-provider">Meta (Coursera)</p>
+                                <a href="https://coursera.org/verify/ZS7VDNDBFYCA" target="_blank" rel="noopener noreferrer" 
+                                   class="inline-block px-6 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg view-certificate-btn"
+                                   title="View React Development Certificate (opens in new tab)">
+                                   View Certificate
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- HTML/CSS Certification -->
+                        <div class="certification-slide">
+                            <div class="glass-card rounded-2xl p-8 text-center hover-lift certification-card">
+                                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center certification-icon">
+                                    <i class="fab fa-html5 text-white text-3xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary-700 mb-3 certification-title">HTML & CSS in Depth</h3>
+                                <p class="text-secondary-600 mb-4 certification-provider">Meta (Coursera)</p>
+                                <a href="https://coursera.org/verify/GFHWWG0DXM14" target="_blank" rel="noopener noreferrer"
+                                   class="inline-block px-6 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg view-certificate-btn"
+                                   title="View HTML & CSS in Depth Certificate (opens in new tab)">
+                                   View Certificate
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Full Stack Certification -->
+                        <div class="certification-slide">
+                            <div class="glass-card rounded-2xl p-8 text-center hover-lift certification-card">
+                                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center certification-icon">
+                                    <i class="fas fa-laptop-code text-white text-3xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary-700 mb-3 certification-title">Full Stack Web Development</h3>
+                                <p class="text-secondary-600 mb-4 certification-provider">Udemy</p>
+                                <a href="https://www.udemy.com/certificate/UC-2265b908-4e96-4267-a4eb-bb47bcdd8697/" target="_blank" rel="noopener noreferrer"
+                                   class="inline-block px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg view-certificate-btn"
+                                   title="View Full Stack Web Development Certificate (opens in new tab)">
+                                   View Certificate
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="lazy-section py-20 bg-gradient-to-b from-secondary-50 to-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 relative">
+                <span class="gradient-text">Get In Touch</span>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <p class="text-xl text-center text-secondary-700 mb-12">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team.
+                    Feel free to reach out to me!
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="glass-card rounded-2xl p-8 text-center hover-lift lazy-element">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                            <i class="fas fa-envelope text-primary-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary-700 mb-3">Email</h3>
+                        <a href="mailto:muakmal2006@gmail.com" class="text-secondary-700 hover:text-primary-600 transition-colors duration-300 text-lg"
+                           title="Send me an email">
+                            muakmal2006@gmail.com
+                        </a>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-8 text-center hover-lift lazy-element">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                            <i class="fas fa-phone text-primary-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary-700 mb-3">Phone</h3>
+                        <a href="tel:+919511719862" class="text-secondary-700 hover:text-primary-600 transition-colors duration-300 text-lg"
+                           title="Call me">
+                            +91-9511719862
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="glass-card rounded-2xl p-8 lazy-element">
+                    <h3 class="text-2xl font-bold text-center text-primary-700 mb-8">Send me a message</h3>
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-secondary-700 mb-2">Name</label>
+                                <input type="text" id="name" 
+                                       class="w-full px-4 py-3 rounded-xl border border-secondary-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all duration-300"
+                                       placeholder="Your name"
+                                       title="Enter your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-secondary-700 mb-2">Email</label>
+                                <input type="email" id="email" 
+                                       class="w-full px-4 py-3 rounded-xl border border-secondary-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all duration-300"
+                                       placeholder="Your email"
+                                       title="Enter your email address">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-secondary-700 mb-2">Subject</label>
+                            <input type="text" id="subject" 
+                                   class="w-full px-4 py-3 rounded-xl border border-secondary-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all duration-300"
+                                   placeholder="Subject"
+                                   title="Enter message subject">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-secondary-700 mb-2">Message</label>
+                            <textarea id="message" rows="5"
+                                      class="w-full px-4 py-3 rounded-xl border border-secondary-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all duration-300"
+                                      placeholder="Your message"
+                                      title="Enter your message"></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="w-full px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-semibold rounded-xl hover:from-primary-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                                title="Send your message">
+                            Send Message <i class="ml-2 fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-secondary-800 to-secondary-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold flex items-center space-x-2" title="Go to top of page">
+                        <i class="fas fa-code"></i>
+                        <span>Akmal Malik</span>
+                    </a>
+                    <p class="mt-2 text-secondary-300">Web Developer & Data Analyst</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://linkedin.com/in/akmalmalik" target="_blank" rel="noopener noreferrer" 
+                       class="text-secondary-300 hover:text-white transition-colors duration-300 text-xl"
+                       title="Visit my LinkedIn profile (opens in new tab)">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/akmal-malik" target="_blank" rel="noopener noreferrer"
+                       class="text-secondary-300 hover:text-white transition-colors duration-300 text-xl"
+                       title="Visit my GitHub profile (opens in new tab)">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/mature_intention" target="_blank" rel="noopener noreferrer"
+                       class="text-secondary-300 hover:text-white transition-colors duration-300 text-xl"
+                       title="Visit my Instagram profile (opens in new tab)">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-secondary-700 mt-8 pt-8 text-center">
+                <p>&copy; 2026 Mohammad Akmal Salim Malik. All Rights Reserved.</p>
+                <p class="text-secondary-400 mt-2 text-sm">Built with <i class="fas fa-heart text-red-500"></i> and Tailwind CSS</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" 
+            class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 opacity-0 transform translate-y-10 hover:scale-110"
+            title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Enhanced Hero Particles with Interactivity
+        class HeroParticles {
+            constructor() {
+                this.container = document.getElementById('hero-particles-container');
+                this.particles = [];
+                this.mouseX = 0;
+                this.mouseY = 0;
+                this.isTouchDevice = 'ontouchstart' in window;
+                this.interactionRadius = 100;
+                this.init();
+            }
+
+            init() {
+                this.createParticles(150); // Increased number of particles
+                this.setupEventListeners();
+                this.animate();
+            }
+
+            createParticles(count) {
+                if (!this.container) return;
+
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random properties
+                    const size = Math.random() * 4 + 1; // 1-5px
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const duration = Math.random() * 20 + 10;
+                    const delay = Math.random() * 5;
+                    const opacity = Math.random() * 0.4 + 0.3; // 0.3-0.7
+                    
+                    // Set particle properties
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.opacity = opacity;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.background = `rgba(255, 255, 255, ${opacity})`;
+                    
+                    // Store original position for reset
+                    particle.originalX = posX;
+                    particle.originalY = posY;
+                    particle.currentX = 0;
+                    particle.currentY = 0;
+                    
+                    this.container.appendChild(particle);
+                    this.particles.push(particle);
+                }
+            }
+
+            setupEventListeners() {
+                const heroSection = document.getElementById('hero');
+                const screenWidth = window.innerWidth;
+
+                // For screens >= 1100px (desktop with hover)
+                if (screenWidth >= 1100) {
+                    heroSection.addEventListener('mousemove', (e) => {
+                        this.mouseX = e.clientX;
+                        this.mouseY = e.clientY;
+                    });
+
+                    heroSection.addEventListener('mouseleave', () => {
+                        this.mouseX = -1000;
+                        this.mouseY = -1000;
+                    });
+                }
+                // For screens between 700px and 1100px (tablets with touch)
+                else if (screenWidth >= 700 && screenWidth < 1100 && this.isTouchDevice) {
+                    heroSection.addEventListener('touchmove', (e) => {
+                        e.preventDefault();
+                        const touch = e.touches[0];
+                        this.mouseX = touch.clientX;
+                        this.mouseY = touch.clientY;
+                        
+                        // Add touch class to particles near touch
+                        this.particles.forEach(particle => {
+                            const rect = particle.getBoundingClientRect();
+                            const particleX = rect.left + rect.width / 2;
+                            const particleY = rect.top + rect.height / 2;
+                            const distance = Math.sqrt(
+                                Math.pow(particleX - this.mouseX, 2) + 
+                                Math.pow(particleY - this.mouseY, 2)
+                            );
+                            
+                            if (distance < this.interactionRadius) {
+                                particle.classList.add('touched');
+                                setTimeout(() => {
+                                    particle.classList.remove('touched');
+                                }, 300);
+                            }
+                        });
+                    });
+
+                    heroSection.addEventListener('touchend', () => {
+                        this.mouseX = -1000;
+                        this.mouseY = -1000;
+                    });
+                }
+                // For screens < 700px, no interactivity
+            }
+
+            animate() {
+                this.updateParticles();
+                requestAnimationFrame(() => this.animate());
+            }
+
+            updateParticles() {
+                const screenWidth = window.innerWidth;
+                
+                // Only apply interactivity for screens >= 700px
+                if (screenWidth >= 700) {
+                    this.particles.forEach(particle => {
+                        const rect = particle.getBoundingClientRect();
+                        const particleX = rect.left + rect.width / 2;
+                        const particleY = rect.top + rect.height / 2;
+                        
+                        const distance = Math.sqrt(
+                            Math.pow(particleX - this.mouseX, 2) + 
+                            Math.pow(particleY - this.mouseY, 2)
+                        );
+                        
+                        if (distance < this.interactionRadius && (screenWidth >= 1100 || (screenWidth >= 700 && screenWidth < 1100 && this.isTouchDevice))) {
+                            // Calculate repulsion force
+                            const force = (this.interactionRadius - distance) / this.interactionRadius;
+                            const angle = Math.atan2(particleY - this.mouseY, particleX - this.mouseX);
+                            const pushDistance = force * 50; // Max push distance
+                            
+                            // Apply push effect
+                            particle.currentX = Math.cos(angle) * pushDistance;
+                            particle.currentY = Math.sin(angle) * pushDistance;
+                            
+                            // Set CSS variables for transformation
+                            particle.style.setProperty('--dx', `${particle.currentX}px`);
+                            particle.style.setProperty('--dy', `${particle.currentY}px`);
+                        } else {
+                            // Smoothly return to original position
+                            particle.currentX *= 0.9;
+                            particle.currentY *= 0.9;
+                            
+                            if (Math.abs(particle.currentX) > 0.1 || Math.abs(particle.currentY) > 0.1) {
+                                particle.style.setProperty('--dx', `${particle.currentX}px`);
+                                particle.style.setProperty('--dy', `${particle.currentY}px`);
+                            } else {
+                                particle.style.removeProperty('--dx');
+                                particle.style.removeProperty('--dy');
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+        // Enhanced Lazy Loading with Intersection Observer
+        class EnhancedLazyLoader {
+            constructor() {
+                this.observers = new Map();
+                this.init();
+            }
+
+            init() {
+                this.setupSectionObserver();
+                this.setupElementObserver();
+                this.setupImageObserver();
+            }
+
+            setupSectionObserver() {
+                const sectionObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('loaded');
+                            sectionObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.05, rootMargin: '100px' });
+
+                document.querySelectorAll('.lazy-section').forEach(section => {
+                    sectionObserver.observe(section);
+                });
+
+                this.observers.set('sections', sectionObserver);
+            }
+
+            setupElementObserver() {
+                const elementObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('loaded');
+                            elementObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.05, rootMargin: '100px' });
+
+                document.querySelectorAll('.lazy-element').forEach(el => {
+                    elementObserver.observe(el);
+                });
+
+                this.observers.set('elements', elementObserver);
+            }
+
+            setupImageObserver() {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            const src = img.dataset.src;
+                            
+                            if (src) {
+                                const tempImg = new Image();
+                                tempImg.onload = () => {
+                                    img.src = src;
+                                    img.classList.remove('lazy-placeholder');
+                                    img.classList.add('loaded');
+                                };
+                                tempImg.src = src;
+                            }
+                            
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                }, { threshold: 0.05, rootMargin: '200px' });
+
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+
+                this.observers.set('images', imageObserver);
+            }
+        }
+
+        // Certifications Slider
+        class CertificationsSlider {
+            constructor() {
+                this.sliderTrack = document.getElementById('certifications-track');
+                this.prevBtn = document.getElementById('cert-slider-prev');
+                this.nextBtn = document.getElementById('cert-slider-next');
+                this.slides = Array.from(this.sliderTrack.children);
+                this.currentIndex = 0;
+                this.autoSlideInterval = null;
+                this.autoSlideDelay = 10000; // 10 seconds
+                
+                this.init();
+            }
+
+            init() {
+                // Calculate visible slides based on screen width
+                this.calculateVisibleSlides();
+                
+                // Set up event listeners
+                this.setupEventListeners();
+                
+                // Start auto-slide
+                this.startAutoSlide();
+                
+                // Update on window resize
+                window.addEventListener('resize', () => {
+                    this.calculateVisibleSlides();
+                    this.updateSlider();
+                });
+            }
+
+            calculateVisibleSlides() {
+                const width = window.innerWidth;
+                let visibleSlides = 3; // Default for large screens
+                
+                if (width <= 1000 && width > 640) {
+                    visibleSlides = 2;
+                } else if (width <= 640) {
+                    visibleSlides = 1;
+                }
+                
+                this.visibleSlides = visibleSlides;
+                this.updateSlideWidth();
+            }
+
+            updateSlideWidth() {
+                const gap = 30;
+                const trackWidth = this.sliderTrack.clientWidth;
+                const slideWidth = (trackWidth / this.visibleSlides) - (gap * (this.visibleSlides - 1) / this.visibleSlides);
+                
+                this.slides.forEach(slide => {
+                    slide.style.minWidth = `${slideWidth}px`;
+                });
+            }
+
+            setupEventListeners() {
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                
+                // Pause auto-slide on hover
+                this.sliderTrack.parentElement.addEventListener('mouseenter', () => {
+                    this.stopAutoSlide();
+                });
+                
+                this.sliderTrack.parentElement.addEventListener('mouseleave', () => {
+                    this.startAutoSlide();
+                });
+                
+                // Touch events for mobile
+                let startX = 0;
+                let isDragging = false;
+                
+                this.sliderTrack.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                    this.stopAutoSlide();
+                });
+                
+                this.sliderTrack.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                });
+                
+                this.sliderTrack.addEventListener('touchend', (e) => {
+                    if (!isDragging) return;
+                    
+                    const endX = e.changedTouches[0].clientX;
+                    const diffX = startX - endX;
+                    
+                    if (Math.abs(diffX) > 50) { // Minimum swipe distance
+                        if (diffX > 0) {
+                            this.nextSlide();
+                        } else {
+                            this.prevSlide();
+                        }
+                    }
+                    
+                    isDragging = false;
+                    this.startAutoSlide();
+                });
+            }
+
+            updateSlider(animate = true) {
+                const slideWidth = this.slides[0].offsetWidth + 30; // Include gap
+                const translateX = -this.currentIndex * slideWidth;
+                
+                if (animate) {
+                    this.sliderTrack.style.transition = 'transform 0.5s ease-in-out';
+                } else {
+                    this.sliderTrack.style.transition = 'none';
+                }
+                
+                this.sliderTrack.style.transform = `translateX(${translateX}px)`;
+            }
+
+            prevSlide() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                } else {
+                    this.currentIndex = this.slides.length - this.visibleSlides;
+                }
+                this.updateSlider();
+                this.resetAutoSlide();
+            }
+
+            nextSlide() {
+                if (this.currentIndex < this.slides.length - this.visibleSlides) {
+                    this.currentIndex++;
+                } else {
+                    this.currentIndex = 0;
+                }
+                this.updateSlider();
+                this.resetAutoSlide();
+            }
+
+            startAutoSlide() {
+                this.stopAutoSlide();
+                this.autoSlideInterval = setInterval(() => {
+                    this.nextSlide();
+                }, this.autoSlideDelay);
+            }
+
+            stopAutoSlide() {
+                if (this.autoSlideInterval) {
+                    clearInterval(this.autoSlideInterval);
+                    this.autoSlideInterval = null;
+                }
+            }
+
+            resetAutoSlide() {
+                this.stopAutoSlide();
+                this.startAutoSlide();
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Hero Particles
+            const heroParticles = new HeroParticles();
+            
+            // Initialize Lazy Loader
+            const lazyLoader = new EnhancedLazyLoader();
+            
+            // Initialize Certifications Slider
+            const certSlider = new CertificationsSlider();
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenu.classList.toggle('animate-slide-up');
+                    
+                    // Change icon
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon.classList.contains('fa-bars')) {
+                        icon.classList.replace('fa-bars', 'fa-times');
+                    } else {
+                        icon.classList.replace('fa-times', 'fa-bars');
+                    }
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                        mobileMenu.classList.add('hidden');
+                        const icon = mobileMenuButton.querySelector('i');
+                        if (icon.classList.contains('fa-times')) {
+                            icon.classList.replace('fa-times', 'fa-bars');
+                        }
+                    }
+                });
+            }
+
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.remove('opacity-0', 'translate-y-10');
+                    backToTop.classList.add('opacity-100', 'translate-y-0');
+                } else {
+                    backToTop.classList.remove('opacity-100', 'translate-y-0');
+                    backToTop.classList.add('opacity-0', 'translate-y-10');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            const icon = mobileMenuButton.querySelector('i');
+                            if (icon.classList.contains('fa-times')) {
+                                icon.classList.replace('fa-times', 'fa-bars');
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Simple form validation
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const message = document.getElementById('message').value.trim();
+                    
+                    if (!name || !email || !message) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // In a real application, you would send the form data to a server
+                    // For now, just show a success message
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                });
+            }
+
+            // Animate skill bars on scroll
+            const animateSkillBars = () => {
+                const skillBars = document.querySelectorAll('.skill-bar');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const bar = entry.target;
+                            bar.style.transition = 'width 1.5s ease-in-out';
+                            observer.unobserve(bar);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                skillBars.forEach(bar => observer.observe(bar));
+            };
+            
+            // Call after a delay to ensure elements are loaded
+            setTimeout(animateSkillBars, 500);
+            
+            // Preload hero image immediately
+            const heroImg = document.querySelector('#hero img[data-src]');
+            if (heroImg) {
+                const img = new Image();
+                img.onload = () => {
+                    heroImg.src = img.src;
+                    heroImg.classList.remove('lazy-placeholder');
+                    heroImg.classList.add('loaded');
+                };
+                img.src = heroImg.dataset.src;
+            }
+        });
+
+        // Performance optimization
+        window.addEventListener('load', () => {
+            // Remove loading animations after page load
+            setTimeout(() => {
+                const placeholders = document.querySelectorAll('.lazy-placeholder');
+                placeholders.forEach(el => {
+                    if (!el.classList.contains('loaded')) {
+                        el.classList.remove('lazy-placeholder');
+                    }
+                });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
