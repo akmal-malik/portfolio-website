@@ -111,8 +111,6 @@ body {
 }
 .timeline-dot {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -120,9 +118,21 @@ body {
     border: 4px solid white;
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
 }
+/* Fix timeline positioning on mobile */
+.timeline-item {
+    position: relative;
+}
 @media (max-width: 768px) {
-    .timeline-line { left: 30px; }
-    .timeline-dot { left: 30px; }
+    .timeline-line {
+        left: 30px;
+    }
+    .timeline-dot {
+        left: 30px;
+        transform: translateX(-50%);
+    }
+    .timeline-item > div:last-child {
+        margin-left: 60px !important; /* Override Tailwind ml-0 */
+    }
 }
 
 /* Skill bar animation */
@@ -274,4 +284,115 @@ body {
 }
 .hero-visible .logo-text {
     color: white !important;
+}
+
+/* ========== Global Responsive Improvements ========== */
+@media (max-width: 1000px) {
+    /* Reduce container padding */
+    .container {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    /* Scale down section headings */
+    h2.text-4xl {
+        font-size: 2.5rem !important;
+    }
+    h2.md\:text-5xl {
+        font-size: 3rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Further reduce padding */
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Adjust hero section */
+    #hero .relative.w-48.h-48 {
+        width: 8rem !important;
+        height: 8rem !important;
+    }
+    #hero h1.text-5xl {
+        font-size: 2.5rem !important;
+    }
+    #hero h1.md\:text-7xl {
+        font-size: 3.5rem !important;
+    }
+    #hero p.text-xl {
+        font-size: 1.125rem !important;
+    }
+
+    /* Reduce card padding */
+    .glass-card {
+        padding: 1.5rem !important;
+    }
+
+    /* Make skill badges more compact */
+    .bg-gradient-to-r.from-orange-50,
+    .bg-gradient-to-r.from-purple-50,
+    .bg-gradient-to-r.from-cyan-50 {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.875rem !important;
+    }
+
+    /* Adjust project cards */
+    .glass-card .md\:w-2\/3 {
+        padding: 1.5rem !important;
+    }
+    .glass-card .md\:w-1\/3 {
+        padding: 1.5rem !important;
+    }
+
+    /* Reduce gap in grid layouts */
+    .gap-8 {
+        gap: 1.5rem !important;
+    }
+    .gap-12 {
+        gap: 2rem !important;
+    }
+
+    /* Contact section form spacing */
+    #contact .grid.md\:grid-cols-2 {
+        gap: 1rem !important;
+    }
+    #contact input,
+    #contact textarea {
+        padding: 0.75rem 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small devices */
+    h2.text-4xl {
+        font-size: 2rem !important;
+    }
+    h2.md\:text-5xl {
+        font-size: 2.5rem !important;
+    }
+
+    /* Reduce card padding further */
+    .glass-card {
+        padding: 1.25rem !important;
+    }
+
+    /* Stack project icons better */
+    .glass-card .md\:flex {
+        flex-direction: column !important;
+    }
+    .glass-card .md\:w-2\/3,
+    .glass-card .md\:w-1\/3 {
+        width: 100% !important;
+    }
+
+    /* Adjust footer */
+    footer .flex-col {
+        text-align: center;
+    }
+    footer .space-x-6 {
+        justify-content: center;
+        margin-top: 1rem;
+    }
 }
