@@ -418,6 +418,51 @@ class CertificationsSlider {
     }
 }
 
+// ==================== Project Preview Modal ====================
+function setupProjectModal() {
+    const modal = document.getElementById('projectModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const previewButtons = document.querySelectorAll('.show-preview-btn');
+
+    if (!modal || !modalImage || !closeBtn) return;
+
+    // Open modal when preview button clicked
+    previewButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent any parent clicks
+            const imgSrc = btn.getAttribute('data-preview');
+            if (imgSrc) {
+                modalImage.src = imgSrc;
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden'; // prevent background scrolling
+            }
+        });
+    });
+
+    // Close modal functions
+    const closeModal = () => {
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // restore scrolling
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Click outside the image to close
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Also close on Esc key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+        }
+    });
+}
+
 // ==================== Main Initialization ====================
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
@@ -425,6 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lazyLoader = new EnhancedLazyLoader();
     const certSlider = new CertificationsSlider();
     setupHeroObserver(); // Add hero visibility observer
+    setupProjectModal(); // Initialize project modal
 
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -533,7 +579,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
 
     // Animate skill bars on scroll
     const animateSkillBars = () => {

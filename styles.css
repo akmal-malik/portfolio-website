@@ -266,6 +266,7 @@ body {
     .certification-icon { width: 50px !important; height: 50px !important; }
     .certification-icon i { font-size: 1.5rem !important; }
     .certification-title { font-size: 1rem !important; }
+    .view-certificate-btn { font-size: 0.75rem !important; }
 }
 
 /* ========== Hero Section Nav Visibility ========== */
@@ -338,14 +339,6 @@ body {
         font-size: 0.875rem !important;
     }
 
-    /* Adjust project cards */
-    .glass-card .md\:w-2\/3 {
-        padding: 1.5rem !important;
-    }
-    .glass-card .md\:w-1\/3 {
-        padding: 1.5rem !important;
-    }
-
     /* Reduce gap in grid layouts */
     .gap-8 {
         gap: 1.5rem !important;
@@ -378,15 +371,6 @@ body {
         padding: 1.25rem !important;
     }
 
-    /* Stack project icons better */
-    .glass-card .md\:flex {
-        flex-direction: column !important;
-    }
-    .glass-card .md\:w-2\/3,
-    .glass-card .md\:w-1\/3 {
-        width: 100% !important;
-    }
-
     /* Adjust footer */
     footer .flex-col {
         text-align: center;
@@ -397,75 +381,21 @@ body {
     }
 }
 
-/* ========== Project Cards Responsive Fixes ========== */
-/* Using the added project-content and project-icon classes */
-@media (max-width: 800px) {
-    #projects .project-content {
-        padding: 1.25rem !important; /* p-5 equivalent */
-    }
-    #projects .project-icon {
-        padding: 1.25rem !important;
-    }
-    #projects .project-content .text-2xl.md\:text-3xl {
-        font-size: 1.5rem !important; /* text-2xl */
-    }
-    #projects .project-content .text-lg {
-        font-size: 1rem !important; /* text-base */
-        margin-bottom: 0.75rem !important;
-    }
-    #projects .project-content ul.space-y-3 {
-        margin-bottom: 1rem !important;
-    }
-    #projects .project-content ul.space-y-3 li {
-        font-size: 0.875rem !important; /* text-sm */
-    }
-    #projects .project-content ul.space-y-3 li i {
-        font-size: 0.875rem !important;
-        margin-top: 0.2rem !important;
-    }
-    #projects .project-content .flex.flex-wrap.gap-3 {
-        gap: 0.5rem !important;
-    }
-    #projects .project-content .flex.flex-wrap.gap-3 span {
-        padding: 0.25rem 0.75rem !important;
-        font-size: 0.75rem !important; /* text-xs */
-    }
-    #projects .project-icon i {
-        font-size: 3rem !important; /* text-5xl */
-    }
+/* ========== Project Modal Styles ========== */
+#projectModal {
+    transition: opacity 0.3s ease;
 }
 
-@media (max-width: 480px) {
-    #projects .project-content {
-        padding: 1rem !important; /* p-4 */
-    }
-    #projects .project-icon {
-        padding: 1rem !important;
-    }
-    #projects .project-content .text-2xl.md\:text-3xl {
-        font-size: 1.25rem !important; /* text-xl */
-    }
-    #projects .project-content .text-lg {
-        font-size: 0.875rem !important; /* text-sm */
-        margin-bottom: 0.5rem !important;
-    }
-    #projects .project-content ul.space-y-3 {
-        margin-bottom: 0.75rem !important;
-    }
-    #projects .project-content ul.space-y-3 li {
-        font-size: 0.75rem !important; /* text-xs */
-    }
-    #projects .project-content .flex.flex-wrap.gap-3 span {
-        padding: 0.2rem 0.5rem !important;
-        font-size: 0.7rem !important;
-    }
-    #projects .project-icon i {
-        font-size: 2.5rem !important; /* text-4xl */
-    }
-    /* Also adjust the status badge */
-    #projects .project-content .bg-gradient-to-r.from-blue-100,
-    #projects .project-content .bg-gradient-to-r.from-green-100 {
-        font-size: 0.7rem !important;
-        padding: 0.2rem 0.6rem !important;
-    }
+#projectModal.show {
+    display: flex !important;
+    opacity: 1;
+}
+
+#closeModalBtn {
+    cursor: pointer;
+}
+
+#modalImage {
+    max-height: 80vh;
+    object-fit: contain;
 }
